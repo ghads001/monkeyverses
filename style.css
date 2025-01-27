@@ -1,0 +1,561 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+body {
+  background: linear-gradient(45deg, #1a0f3c, #2d1b69);
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+.stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(white, transparent 1px) 0 0 / 50px 50px;
+  animation: starsMove 100s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to { background-position: -1000px 1000px; }
+}
+
+header {
+  text-align: center;
+  padding: 3rem;
+  margin-bottom: 2rem;
+}
+
+.epic-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 6rem;
+  background: linear-gradient(to right, #00fff2, #ff00ff, #00fff2);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 
+    0 0 30px rgba(0, 255, 242, 0.8),
+    0 0 60px rgba(255, 0, 255, 0.8),
+    0 0 90px rgba(0, 255, 242, 0.4);
+  animation: titleGlow 2s ease-in-out infinite alternate,
+             titleFlow 3s linear infinite,
+             titlePulse 4s ease-in-out infinite;
+  letter-spacing: 6px;
+  position: relative;
+}
+
+@keyframes titleGlow {
+  from { 
+    filter: brightness(1) blur(0px);
+    transform: scale(1);
+  }
+  to { 
+    filter: brightness(1.2) blur(2px);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes titleFlow {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes titlePulse {
+  0% { filter: brightness(1) blur(0px); }
+  50% { filter: brightness(1.5) blur(1px); }
+  100% { filter: brightness(1) blur(0px); }
+}
+
+.nft-section {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  background: rgba(26, 15, 60, 0.8);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 30px rgba(0, 255, 242, 0.2);
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nft-card {
+  background: rgba(45, 27, 105, 0.9);
+  border-radius: 20px;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+}
+
+.nft-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 255, 242, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.nft-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 10px 30px rgba(0, 255, 242, 0.2),
+    0 0 60px rgba(255, 0, 255, 0.2);
+}
+
+.nft-card p {
+  color: #c4c4ff;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.cybermonkey {
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.nft-card:hover .cybermonkey {
+  transform: scale(1.05);
+}
+
+.monkey-svg {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 242, 0.5));
+}
+
+.nft-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  background: linear-gradient(to right, #00fff2, #ff00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.collage-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  opacity: 0.25;
+}
+
+.collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(50%) brightness(0.7);
+  transition: all 0.5s ease;
+}
+
+.collage-img:nth-child(1) {
+  transform: rotate(-5deg) scale(1.1);
+}
+
+.collage-img:nth-child(2) {
+  transform: rotate(5deg) scale(1.1);
+}
+
+.collage-img:nth-child(3) {
+  transform: rotate(3deg) scale(1.1);
+}
+
+.mining-section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.mining-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mining-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.stat-card {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mine-button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: linear-gradient(45deg, #f953c6, #b91d73);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mine-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(249, 83, 198, 0.5);
+}
+
+.mine-button.mining {
+  background: linear-gradient(45deg, #b91d73, #f953c6);
+  animation: pulse 1s infinite;
+}
+
+.mining-animation {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  perspective: 400px;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  display: none;
+}
+
+.cube.spinning {
+  display: block;
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: rotateX(0) rotateY(0); }
+  to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.cube::before {
+  content: '💎';
+  position: absolute;
+  font-size: 3rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pharaoh .crown {
+  fill: #ffd700;
+}
+
+.soldier .helmet {
+  fill: #4a4a4a;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.community-section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.telegram-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.telegram-preview {
+  max-width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.telegram-preview:hover {
+  transform: scale(1.05);
+}
+
+.community-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.telegram-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #0088cc, #00a2ff);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.telegram-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(0, 136, 204, 0.5);
+}
+
+.telegram-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.locked-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 3rem;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.lock-icon {
+  width: 100px;
+  height: 100px;
+  animation: lockPulse 2s ease-in-out infinite;
+}
+
+.lock-body {
+  fill: #f953c6;
+}
+
+.lock-hook {
+  fill: none;
+  stroke: #f953c6;
+  stroke-width: 8;
+}
+
+.keyhole {
+  fill: #004e92;
+}
+
+@keyframes lockPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.head {
+  fill: #4a4a4a;
+}
+
+.eye {
+  fill: white;
+}
+
+.eye-shine {
+  fill: #00ff00;
+}
+
+.mouth {
+  fill: none;
+  stroke: white;
+  stroke-width: 3;
+}
+
+.ear {
+  fill: none;
+  stroke: #4a4a4a;
+  stroke-width: 5;
+}
+
+.monkey-avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.youtube-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #282828, #1f1f1f);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  transition: all 0.4s ease;
+}
+
+.youtube-card:hover {
+  border-color: rgba(255, 0, 0, 0.6);
+  box-shadow: 
+    0 10px 30px rgba(255, 0, 0, 0.2),
+    0 0 60px rgba(255, 0, 0, 0.2),
+    inset 0 0 20px rgba(255, 0, 0, 0.1);
+}
+
+.youtube-preview {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.youtube-card:hover .youtube-preview {
+  transform: scale(1.05);
+  filter: brightness(0.8) contrast(1.2);
+}
+
+.youtube-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  color: #ff0000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.youtube-card:hover .youtube-icon {
+  opacity: 1;
+}
+
+.youtube-card h3 {
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .epic-title {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+  }
+  
+  .nft-section {
+    margin: 0.5rem auto;
+    padding: 1rem;
+  }
+  
+  .monkey-svg {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .nft-card {
+    padding: 1rem;
+  }
+  
+  .nft-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .collage-background {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  
+  .mining-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+  
+  .telegram-container {
+    padding: 1rem;
+  }
+  
+  .telegram-preview {
+    max-width: 100%;
+  }
+  
+  .telegram-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nft-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .youtube-preview {
+    height: 150px;
+  }
+  
+  .youtube-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
